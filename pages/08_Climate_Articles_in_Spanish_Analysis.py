@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+#import matplotlib.pyplot as plt
+#import seaborn as sns
 import plotly.express as px
 
 # The actual page content is executed here by Streamlit
@@ -9,17 +9,17 @@ st.title("🌎 Climate Articles in Spanish Language Analysis")
 st.markdown("---")
 
 # Retrieve shared data from the Home page's session state
-if 'student_data' not in st.session_state or st.session_state['student_data']['st8_df'].empty:
+if 'student_data' not in st.session_state or st.session_state['student_data']['st08_df'].empty:
     st.warning("Data not loaded. Please ensure the main Home Page ran successfully and the data files exist.")
 else:
 
-    df = st.session_state['student_data']['st8_df']
+    df = st.session_state['student_data']['st08_df']
         
         # --- Student Introductory Section ---
     st.header("1. Introduction and Project Goal")
     st.markdown("""
             ⚙️**Data Description:** \n
-            This dataset contains results from **2020-04-22 to 2020-09-14**\n
+            This dataset contains results from **2020-04-22 to 2020-09-14** 
             for the top 25 contries where wikipedia articles about climate change in spanish where accessed, 
             in comparison to all other languages from those respective countries. Data was extracted from
             DPDP Wikepedia files. Languages where matched by key matching the first two characters of wiki site names, and labeled as spanish
@@ -42,7 +42,7 @@ options=["Language Comparisons","Spanish Views in Top 25 Countries"]
 selection=st.selectbox("Select a data frame",options)
     
 #import and order data
-data=pd.read_csv("data/st8_data.csv")
+data=pd.read_csv("data/st08_data.csv")
 data=data.sort_values(by=['Country','views'], ascending=False)
 data=data.drop('Unnamed: 0', axis=1)
 #Get SD+- to order from higuest to lowest
@@ -56,7 +56,7 @@ sorted2=data2.sort_values(by='views (log)',ascending=False)['Country'].tolist()
 if selection == options[0]:
 #Making plot
     st.subheader(options[0])
-    plt.figure(figsize=(20,6))
+    #plt.figure(figsize=(20,6))
 
     figure= px.bar(data, x='Country',y='views (log)',color='language_type',hover_data=['views'],category_orders={"Country": sorted})
     figure.update_layout(barmode='group',xaxis_tickangle=90, height=600, width=1000)

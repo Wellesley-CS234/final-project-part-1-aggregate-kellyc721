@@ -4,7 +4,7 @@ import plotly.express as px
 from datetime import date, timedelta, datetime
 
 # The actual page content is executed here by Streamlit
-st.title("📱 Student 03: Social Media Analysis")
+st.title("📱 Social Media Analysis on Wikipedia")
 st.markdown("---")
 
 # Retrieve shared data from the Home page's session state
